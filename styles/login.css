@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+  font-family: "Roboto";
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+.logo {
+  width: 12rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+form {
+  width: 90%;
+  max-width: 43.3rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  gap: 1.6rem;
+  padding: 5.6rem 4rem;
+  border: 0.1rem solid #70707040;
+  border-radius: 0.8rem;
+  font-weight: normal;
+  font-size: 1.4rem;
+  color: #868e96;
+  margin: 0 2rem;
+}
+
+.entrar {
+  width: 100%;
+  height: 4.5rem;
+  background-color: #ffc501;
+  border: none;
+  border-radius: 0.4rem;
+  opacity: 0.9;
+  margin-top: 1.6rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #000000;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 1.6rem;
+}
+.email {
+  background: url(../images/email.svg) no-repeat scroll 96%;
+  background-color: #f1f3f5;
+}
+.password {
+  background: url(../images/senha.svg) no-repeat scroll 96%;
+  background-color: #f1f3f5;
+}
+a {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #000000;
+}
