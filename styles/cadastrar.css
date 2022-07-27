@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+  font-family: "Roboto";
+}
+body {
+  background-color: #f4f4f4;
+}
+button,
+a {
+  cursor: pointer;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2.4rem 3.6rem;
+  background-color: #ffffff;
+}
+.logo {
+  width: 12rem;
+}
+header div {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 14.8rem;
+}
+header div div {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: row;
+  font-size: 1.8rem;
+}
+.flecha {
+  cursor: pointer;
+}
+.sair {
+  display: none;
+  position: absolute;
+  width: 14.8rem;
+  height: 5.7rem;
+  background-color: #afaeae;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: start;
+  font-family: "Poppins";
+  font-size: 1.8rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+main {
+  height: 100%;
+  min-height: 61.5rem;
+  flex-wrap: wrap;
+  margin: 2.4rem;
+  background-color: #ffffff;
+}
+
+main p {
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 11.7rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(5, 17.5rem);
+  grid-template-rows: repeat(4, 5.3rem);
+  row-gap: 2.4rem;
+  column-gap: 3.5rem;
+  justify-content: center;
+}
+
+.img {
+  display: none;
+}
+form label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  border: dashed 0.2rem #ffc501;
+  color: #ffc501;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1rem;
+  cursor: pointer;
+}
+form label img {
+  width: 2.4rem;
+  margin-right: 0.8rem;
+}
+input,
+textarea,
+.generosButton {
+  border: solid 0.1px #133052;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 1.6rem;
+}
+textarea {
+  padding-top: 1.6rem;
+}
+
+.titulo {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.autor {
+  grid-column-start: 4;
+  grid-column-end: 6;
+}
+.sinopse {
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.genero {
+  grid-column-start: 4;
+  grid-column-end: 6;
+}
+.data {
+  grid-column-start: 4;
+  grid-column-end: 6;
+  background: url(../images/cadastrarCalendario.svg) no-repeat scroll 96%;
+}
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+.cancelar {
+  background-color: #ffffff;
+  border: solid 0.1px #133052;
+}
+.salvar {
+  background-color: #ffc501;
+  border: solid 0.1px #ffc501;
+}
+.cancelar,
+.salvar {
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1.6rem 3.2rem;
+  width: 14.3rem;
+  height: fit-content;
+  border-radius: 0.5rem;
+}
+.botoes {
+  display: flex;
+  flex-direction: row;
+  gap: 2.4rem;
+  justify-content: end;
+  grid-column-start: -3;
+  grid-column-end: -1;
+}
+
+.generos {
+  width: 38.5rem;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.generosButton {
+  width: 100%;
+  height: 5.3rem;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  grid-column-start: 4;
+  grid-column-end: 6;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.generosOpicoes {
+  display: none;
+  flex-direction: column;
+  font-size: 1.6rem;
+  font-weight: 400;
+  z-index: 9;
+  text-align: start;
+  background-color: #ffffff;
+  margin: 0.8rem 0;
+  border-radius: 0.5rem;
+  border: solid 0.1rem #ffffff;
+  box-shadow: 0px 0.5rem 1rem #00000033;
+}
+
+.generosOpicoes button {
+  text-align: start;
+  width: 100%;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  background-color: inherit;
+  cursor: pointer;
+}
+.generosOpicoes button:hover {
+  background-color: #ffc501;
+}
+.generosOpicoes button:first-child {
+  border: none;
+  padding: 0.8rem 1.6rem;
+  background-color: #edf4fb;
+}
+.generosButtonLegend {
+  display: none;
+}
+legend {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0 0.3rem;
+}

@@ -17,7 +17,7 @@ sair.addEventListener("click", () => {
   window.location.href = "../pages/login.html";
 });
 cadastrar.addEventListener("click", () => {
-  window.location.href = "../pages/login.html";
+  window.location.href = "../pages/cadastrar.html";
 });
 biblioteca.addEventListener("click", () => {
   window.location.href = "../pages/login.html";
