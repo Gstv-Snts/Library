@@ -1,0 +1,240 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Roboto";
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2.4rem 3.6rem;
+  background-color: #ffffff;
+}
+
+.logo {
+  width: 12rem;
+}
+
+header div {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 14.8rem;
+}
+
+header div div {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: row;
+  font-size: 1.8rem;
+}
+
+.flecha {
+  cursor: pointer;
+}
+
+.sair {
+  display: none;
+  position: absolute;
+  width: 14.8rem;
+  height: 5.7rem;
+  background-color: #afaeae;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: start;
+  font-family: "Poppins";
+  font-size: 1.8rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+main {
+  height: 100%;
+  min-height: 61.5rem;
+  flex-wrap: wrap;
+  margin: 2.4rem;
+  background-color: #ffffff;
+}
+
+main p {
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.filtros-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3.2rem;
+  justify-content: center;
+  margin-bottom: 7.6rem;
+  margin: 4.8rem 1rem 7.6rem 1rem;
+  height: 5.5rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 66.6rem;
+  height: fit-content;
+  padding: 0.8rem 1.6rem;
+  border: 0.1rem solid #ADB5BD;
+  border-radius: 0.5rem;
+}
+
+form input {
+  width: 100%;
+  margin-left: 1.6rem;
+  height: 100%;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: italic;
+  outline: none;
+}
+
+form input::placeholder {
+  color: #ADB5BD;
+}
+
+form button {
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.5rem;
+  border: solid 0.1rem #FFC501;
+  background-color: #FFC501;
+  color: #000000;
+}
+
+.filtrar {
+  display: flex;
+  width: 26rem;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.filtrarButton {
+  width: 100%;
+  height: 5.3rem;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  cursor: pointer;
+  border: 0.1rem solid #ADB5BD;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #ADB5BD;
+  padding: 1.6rem;
+}
+
+.filtrarButtonLegend {
+  display: none;
+}
+
+.filtrarOpicoes {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  font-size: 1.6rem;
+  font-weight: 400;
+  z-index: 9;
+  text-align: start;
+  background-color: #ffffff;
+  margin: 0.8rem 0;
+  border-radius: 0.5rem;
+  border: solid 0.1rem #ffffff;
+  box-shadow: 0px 0.5rem 1rem #00000033;
+}
+
+.filtrarOpicoes button {
+  text-align: start;
+  width: 100%;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.filtrarOpicoes button:hover {
+  background-color: #ffc501;
+}
+
+.filtrarOpicoes button:first-child {
+  border: none;
+  padding: 0.8rem 1.6rem;
+  background-color: #edf4fb;
+}
+
+.filtrarButtonLegend {
+  display: none;
+}
+
+legend {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0 0.3rem;
+}
+
+.livros-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 19.6rem);
+  grid-template-rows: repeat(auto-fill, fit-content);
+  justify-content: center;
+  gap: 4rem;
+  margin: 0 1rem;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  width: 19.6rem;
+  height: 100%;
+  padding: 4rem 1.8rem;
+  background-color: #F4F4F4;
+  border: 0.1rem solid #F4F4F4;
+  border-radius: 0.5rem;
+}
+
+article img {
+  width: 10.8rem;
+}
+
+article span {
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.1rem;
+  text-align: center;
+}
+
+@media (max-width:500px) {
+  .filtros-container {
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+  }
+}

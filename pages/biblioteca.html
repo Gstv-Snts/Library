@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar novo livro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:wght@300&family=Poppins&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+Pro:wght@200;900&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/biblioteca.css" />
+  </head>
+
+  <body>
+    <header>
+      <img class="logo" src="../images/logo.svg" />
+      <div>
+        <div>
+          <img src="../images/usuario.svg" />
+          <label>Usúario</label>
+          <img class="flecha" src="../images/flecha.svg" />
+        </div>
+        <button class="sair">Sair</button>
+      </div>
+    </header>
+    <main>
+      <p>
+        <img src="../images/setaEsquerda.png" /><a> Home</a><strong> / Biblioteca</strong>
+      </p>
+
+      <section class="filtros-container">
+
+        <form>
+          <img src="/images/lupaBiblioteca.svg" />
+          <input type="text" placeholder="Pesquisar livro..." />
+          <button>Buscar</button>
+        </form>
+
+        <div class="filtrar">
+          <button class="filtrarButton">
+            <legend class="filtrarButtonLegend">Filtrar</legend>
+            <span>Filtrar</span>
+            <img src="/images/cadastrarGeneroFlechaBaixo.svg">
+          </button>
+          <div class="filtrarOpicoes">
+            <button>Selecione</button>
+            <button class="filtroGenero">Gênero</address>
+              <button class="filtroAutor">Autor</button>
+              <button class="filtroData">Data de entrada</button>
+          </div>
+        </div>
+
+      </section>
+      <section class="livros-container">
+
+    </main>
+    <script src="../scripts/biblioteca.js"></script>
+  </body>
+
+</html>
