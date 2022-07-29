@@ -5,14 +5,6 @@ const biblioteca = document.querySelector(".biblioteca");
 const historico = document.querySelector(".historico");
 let aberto = false;
 
-fetch("../data/data.json")
-  .then((res) => {
-    return res.json();
-  })
-  .then((body) => {
-    localStorage.setItem("dados", JSON.stringify(body.data));
-  });
-
 flecha.addEventListener("click", () => {
   if (!aberto) {
     sair.style.display = "block";
@@ -23,6 +15,7 @@ flecha.addEventListener("click", () => {
   }
 });
 sair.addEventListener("click", () => {
+  localStorage.removeItem("autenticado");
   window.location.href = "../pages/login.html";
 });
 cadastrar.addEventListener("click", () => {

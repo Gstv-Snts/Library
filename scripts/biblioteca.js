@@ -4,19 +4,53 @@ const home = document.querySelector("main p");
 let aberto = false;
 let filtrosAberto = false;
 
-const livros = JSON.parse(localStorage.getItem("dados")).books;
+fetch("../data/data.json")
+  .then((res) => {
+    return res.json();
+  })
+  .then((body) => {
+    localStorage.setItem("livros", JSON.stringify(body.data.books));
+  });
+
+const livros = JSON.parse(localStorage.getItem("livros"));
+console.log(livros);
 
 function preencherLivrosContainer() {
   document.querySelector(".livros-container").innerHTML = livros
-    .map((e) => {
+    .map((e, i) => {
       return `
-  <article>
-  <img src=".${e.image}">
-  <span>${e.tittle}</span>
-  </article>
+        <article>
+          <img src=".${e.image}">
+          <span>${e.tittle}</span>
+        </article>
+        <div class="livro-informacao">
+          <section class="livro-informacao-esquerda">
+            <img src=".${e.image}">
+            <button><img src="../images/emprestarLivro.svg"> Emprestar</button>
+          </section>
+          <section class="livro-informacao-direita">
+            <h1>${e.tittle}</h1>
+            <h2>Sinopse</h2>
+            <p>${e.synopsis}</p>
+            <h2>Autor</h2>
+            <p>${e.author}</p>
+            <h2>Gênero</h2>
+            <p>${e.genre}</p>
+            <h2>Data de entrada</h2>
+            <p>${e.systemEntryDate}</p>
+          </section>
+        </div>
   `;
     })
     .join("");
+
+  document.querySelectorAll('article').forEach((e) => {
+    e.addEventListener('click', (e) => {
+      console.log(
+        e.currentTarget.nextElementSibling)
+      e.currentTarget.nextElementSibling.style.display = 'flex'
+    })
+  })
 }
 
 flecha.addEventListener("click", () => {

@@ -21,6 +21,14 @@ home.addEventListener("click", () => {
 });
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  fetch("../data/data.json")
+    .then((res) => {
+      return res.json();
+    })
+    .then((body) => {
+      localStorage.setItem("dados", JSON.stringify(body.data));
+    });
+  window.location.href = "/pages/index.html";
 });
 function abrirGenero() {
   const button = document.querySelector(".generosButton");
@@ -64,4 +72,8 @@ document.querySelectorAll(".generosOpicoes button").forEach((e) => {
 
 document.querySelector(".cancelar").addEventListener("click", () => {
   document.querySelector(".generosButton span").innerText = "Gênero";
+});
+
+document.querySelector(".cancelar").addEventListener("click", () => {
+  window.location.href = "/pages/index.html";
 });
