@@ -232,33 +232,41 @@ article span {
   text-align: center;
 }
 
-
-.livro-informacao {
-  display: none;
+.livro-tela {
+  display: flex;
   position: fixed;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #343A40;
-  opacity: 0.7;
-  flex-direction: row;
+  background-color: rgba(52, 58, 64, 0.7);
   justify-content: center;
+  align-items: center;
+}
+
+.livro-informacao {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  background-color: rgb(255, 255, 255);
+  width: fit-content;
+  height: fit-content;
+  padding: 7rem 4rem 4rem 4rem;
 }
 
 .livro-informacao-esquerda {
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 3.2rem;
-  width: 31.2rem;
-  height: fit-content;
-  padding: 4rem;
-  background-color: #FFFFFF;
+  width: fit-content;
+  height: auto;
 }
 
 .livro-informacao-esquerda img {
   width: 27.2rem;
-  height: 39rem;
 }
 
 .livro-informacao-esquerda button {
@@ -277,13 +285,252 @@ article span {
 }
 
 .livro-informacao-direita {
-  width: 30rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 42.4rem;
+  background-color: #FFFFFF;
+  height: auto;
 }
 
 .livro-informacao-direita h1 {
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 2.6rem;
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+
+.livro-informacao-direita h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.livro-informacao-direita p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 2.1rem;
+  padding: 0;
+  margin-bottom: 2.4rem;
+}
+
+.livro-informacao-direita-botoes {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 2.4rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.livro-informacao-editar {
+  border: 0.1rem solid #167CE2;
+  border-radius: 0.5rem;
+  color: #167CE2;
+  padding: 1.6rem 2.4rem;
+  background-color: #FFFFFF;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.livro-informacao-inativar {
+  border: 0.1rem solid #ED5E5E;
+  border-radius: 0.5rem;
+  color: #ED5E5E;
+  padding: 1.6rem 2.4rem;
+  background-color: #FFFFFF;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.livro-informacao-historico {
+  border: 0.1rem solid #ADB5BD;
+  border-radius: 0.5rem;
+  color: #000000;
+  padding: 1.6rem 2.4rem;
+  background-color: #FFFFFF;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.livro-informacao-sair {
+  position: absolute;
+  right: 3.5%;
+  top: 6%;
+  width: 1.6rem;
+  cursor: pointer;
+}
+
+.emprestar-livro {
+  display: flex;
+  position: inherit;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  padding: 4rem;
+  gap: 2.4rem;
+}
+
+.emprestar-livro:last-child {
+  justify-content: end;
+}
+
+.emprestar-livro h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.emprestar-livro-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, 35rem);
+  grid-template-rows: repeat(2, 5.3rem);
+  gap: 2.4rem;
+}
+
+.emprestar-livro input {
+  border: 1px solid #133052;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding-left: 1.6rem;
+}
+
+.emprestar-livro input[type="date"] {
+  background: url(../images/cadastrarCalendario.svg) no-repeat scroll 96%;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.emprestar-livro button {
+  width: 27.2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1.6rem 8.2rem;
+  background-color: #FFC501;
+  border: 0.1rem solid #ADB5BD;
+  border-radius: 0.5rem;
+  margin-left: auto;
+}
+
+.aluno-dados {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  width: 81.6rem;
+  padding: 2rem 4rem 4rem 4rem;
+  gap: 1.6rem;
+}
+
+.aluno-dados-container {
+  display: flex;
+  flex-direction: row;
+  gap: 7.2rem;
+  background-color: #F4F4F4;
+  padding: 1.6rem;
+}
+
+.aluno-dados-container div h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.aluno-dados-container div p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 0;
+  margin-top: 0.8rem;
+}
+
+.livro-historico {
+  display: flex;
+  flex-direction: column;
+  gap: 2.9rem;
+  width: fit-content;
+  background-color: #FFFFFF;
+  height: fit-content;
+  position: relative;
+  padding: 4rem;
+}
+
+.livro-historico h1 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+table {
+  width: 97.8rem;
+}
+
+th {
+  background-color: #FFC501;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+td {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+th,
+td {
+  text-align: start;
+  padding: 1rem 0 1rem 4rem;
+}
+
+tbody tr {
+  border-bottom: solid 0.1rem #CDCDCD;
+}
+
+.livro-historico-icone-sublinhado {
+  height: 0.1rem;
+  background-color: #000000;
+  width: 10.5rem;
+  margin-top: 0.8rem;
+}
+
+.inativar-livro {
+  display: flex;
+  position: inherit;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 4rem;
+  background-color: #FFFFFF;
+  gap: 2.4rem;
+}
+
+.inativar-livro h1 {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.inativar-livro textarea {
+  width: 72.4rem;
+  height: 12.9rem;
+  border: 0.1rem solid #133052;
+  border-radius: 0.5rem;
+  padding: 1.6rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.inativar-livro button {
+  border: 0.1rem solid #ED5E5E;
+  border-radius: 0.5rem;
+  color: #ED5E5E;
+  padding: 1.6rem 2.4rem;
+  background-color: #FFFFFF;
+  font-size: 1.6rem;
+  font-weight: 500;
+  width: fit-content;
 }
 
 @media (max-width:500px) {

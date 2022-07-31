@@ -1,6 +1,8 @@
+import { criarInfo, criarEmprestar, criarHistorico, criarInativar } from "./criarTelas.js";
 const flecha = document.querySelector(".flecha");
 const sair = document.querySelector(".sair");
 const home = document.querySelector("main p");
+const main = document.querySelector('main')
 let aberto = false;
 let filtrosAberto = false;
 
@@ -13,44 +15,63 @@ fetch("../data/data.json")
   });
 
 const livros = JSON.parse(localStorage.getItem("livros"));
-console.log(livros);
 
+//preenche a tela
 function preencherLivrosContainer() {
-  document.querySelector(".livros-container").innerHTML = livros
-    .map((e, i) => {
-      return `
-        <article>
+  document.querySelector('.livros-container').innerHTML = livros.map((e, i) => {
+    return `
+        <article id="${i}">
           <img src=".${e.image}">
           <span>${e.tittle}</span>
         </article>
-        <div class="livro-informacao">
-          <section class="livro-informacao-esquerda">
-            <img src=".${e.image}">
-            <button><img src="../images/emprestarLivro.svg"> Emprestar</button>
-          </section>
-          <section class="livro-informacao-direita">
-            <h1>${e.tittle}</h1>
-            <h2>Sinopse</h2>
-            <p>${e.synopsis}</p>
-            <h2>Autor</h2>
-            <p>${e.author}</p>
-            <h2>Gênero</h2>
-            <p>${e.genre}</p>
-            <h2>Data de entrada</h2>
-            <p>${e.systemEntryDate}</p>
-          </section>
-        </div>
-  `;
-    })
-    .join("");
+    `
+  }).join('')
+  document.querySelectorAll('article').forEach((e) => { e.addEventListener('click', articleClick) })
+}
 
-  document.querySelectorAll('article').forEach((e) => {
-    e.addEventListener('click', (e) => {
-      console.log(
-        e.currentTarget.nextElementSibling)
-      e.currentTarget.nextElementSibling.style.display = 'flex'
-    })
+function janelaSair() {
+  const main = document.querySelector('main')
+  main.removeChild(main.lastElementChild)
+}
+function janelaSairEvent() {
+  document.querySelector('.livro-informacao-sair').addEventListener('click', () => {
+    janelaSair()
   })
+}
+
+function mostrarInfo(id) {
+  main.appendChild(criarInfo(livros[id].image, livros[id].tittle, livros[id].synopsis, livros[id].author, livros[id].genre, livros[id].systemEntryDate, livros[id].rentHistory))
+}
+function mostrarEmprestar() {
+  document.querySelector('.livro-informacao-esquerda button').addEventListener('click', () => {
+    janelaSair()
+    main.appendChild(criarEmprestar())
+    janelaSairEvent()
+  })
+}
+function mostrarHistorico(id) {
+  document.querySelector('.livro-informacao-historico').addEventListener('click', () => {
+    janelaSair()
+    main.appendChild(criarHistorico(livros[id].rentHistory))
+    janelaSairEvent()
+  })
+}
+function mostrarInativar() {
+  document.querySelector('.livro-informacao-inativar').addEventListener('click', () => {
+    janelaSair()
+    main.appendChild(criarInativar())
+    janelaSairEvent()
+  })
+}
+
+//abre info do livro no click
+function articleClick(e) {
+  const id = e.currentTarget.id
+  mostrarInfo(id)
+  janelaSairEvent()
+  mostrarEmprestar()
+  mostrarHistorico(id)
+  mostrarInativar()
 }
 
 flecha.addEventListener("click", () => {
