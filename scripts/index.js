@@ -25,5 +25,5 @@ biblioteca.addEventListener("click", () => {
   window.location.href = "../pages/biblioteca.html";
 });
 historico.addEventListener("click", () => {
-  window.location.href = "../pages/login.html";
+  window.location.href = "../pages/historico.html";
 });

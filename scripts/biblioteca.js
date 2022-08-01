@@ -72,6 +72,12 @@ function articleClick(e) {
   mostrarEmprestar()
   mostrarHistorico(id)
   mostrarInativar()
+
+  document.querySelector('.livro-informacao-editar').addEventListener('click', () => {
+    console.log(livros[id])
+    localStorage.setItem('livroParaEditar', JSON.stringify(livros[id]))
+    window.location.href = "../pages/editar.html"
+  })
 }
 
 flecha.addEventListener("click", () => {

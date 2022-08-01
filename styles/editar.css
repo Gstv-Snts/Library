@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "Roboto";
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2.4rem 3.6rem;
+    background-color: #ffffff;
+}
+
+.logo {
+    width: 12rem;
+}
+
+header div {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 14.8rem;
+}
+
+header div div {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: row;
+    font-size: 1.8rem;
+}
+
+.flecha {
+    cursor: pointer;
+}
+
+.sair {
+    display: none;
+    position: absolute;
+    width: 14.8rem;
+    height: 5.7rem;
+    background-color: #afaeae;
+    border: none;
+    border-radius: 0.5rem;
+    text-align: start;
+    font-family: "Poppins";
+    font-size: 1.8rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 61.5rem;
+    margin: 2.4rem;
+    background-color: #ffffff;
+    align-items: center;
+}
+
+
+main p {
+    padding: 2rem;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 4rem;
+    height: fit-content;
+    width: 100%;
+}
+
+.livro-editar-container {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 6rem;
+}
+
+.livro-image {
+    width: 15rem;
+    height: fit-content;
+}
+
+fieldset {
+    border: 0.2rem solid #3E4756;
+    border-radius: 0.5rem;
+}
+
+input,
+span {
+    display: flex;
+    align-items: center;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+textarea {
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding-top: 0.5rem;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 35rem);
+    grid-template-rows: repeat(4, 5.6rem);
+    gap: 2.2rem;
+}
+
+.titulo {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.autor {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.sinopse-fieldset {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+.buttons-container {
+    display: flex;
+    width: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    gap: 2.4rem;
+    justify-content: end;
+}
+
+button {
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1.6rem 3.2rem;
+    width: 14.3rem;
+    height: fit-content;
+    border-radius: 0.5rem;
+
+}
+
+.salvar {
+    background-color: #ffc501;
+    border: solid 0.1px #ffc501;
+}
+
+legend {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.generosButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.generosOpicoes {
+    width: 35rem;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: start;
+    background-color: #ffffff;
+    margin: 0.8rem 0;
+    border-radius: 0.5rem;
+    border: solid 0.1rem #ffffff;
+    box-shadow: 0px 0.5rem 1rem #00000033;
+}
+
+.generosOpicoes button {
+    text-align: start;
+    width: 100%;
+    border: none;
+    padding: 0.8rem 1.6rem;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.generosOpicoes button:hover {
+    background-color: #adadad;
+}
+
+.sinopse {
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
+input {
+    padding-top: 0.5rem;
+}
