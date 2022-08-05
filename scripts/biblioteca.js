@@ -6,25 +6,23 @@ const main = document.querySelector('main')
 let aberto = false;
 let filtrosAberto = false;
 
-fetch("../data/data.json")
-  .then((res) => {
-    return res.json();
-  })
-  .then((body) => {
-    localStorage.setItem("livros", JSON.stringify(body.data.books));
-  });
-
 const livros = JSON.parse(localStorage.getItem("livros"));
 
 //preenche a tela
 function preencherLivrosContainer() {
   document.querySelector('.livros-container').innerHTML = livros.map((e, i) => {
+    let image
+    if (e.image.charAt(0) === '.') {
+      image = `.${e.image}`
+    } else {
+      image = e.image
+    }
     return `
-        <article id="${i}">
-          <img src=".${e.image}">
-          <span>${e.tittle}</span>
-        </article>
-    `
+      <article id="${i}">
+      <img src="${image}">
+      <span>${e.tittle}</span>
+      </article>
+      `
   }).join('')
   document.querySelectorAll('article').forEach((e) => { e.addEventListener('click', articleClick) })
 }
@@ -139,11 +137,12 @@ document.querySelectorAll(".filtrarOpicoes button").forEach((e) => {
 preencherLivrosContainer();
 
 document.querySelector(".filtroGenero").addEventListener("click", (e) => {
+  console.log('genero')
   livros.sort((a, b) => {
     if (a.genre < b.genre) return -1;
     if (a.genre > b.genre) return 1;
   });
-  preencherLivrosContainer();
+  preencherLivrosContainer()
 });
 document.querySelector(".filtroAutor").addEventListener("click", (e) => {
   livros.sort((a, b) => {

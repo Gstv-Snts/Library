@@ -29,11 +29,17 @@ export function criarDadosDoAluno(rentHistory) {
 export function criarInfo(image, tittle, synopsis, author, genre, systemEntryDate, rentHistory) {
 	const livroInformacaoTela = document.createElement('div')
 	livroInformacaoTela.className = 'livro-tela'
+	let img
+	if (image.charAt(0) === '.') {
+		img = `.${image}`
+	} else {
+		img = image
+	}
 	const livroInformacao = `
 <div class="livro-informacao">
 	<img class="livro-informacao-sair" src="../images/sairBibliotecaInformacao.png">
 	<section class="livro-informacao-esquerda">
-		<img src=".${image}">
+		<img src="${img}">
 		<button><img src="../images/emprestarLivro.svg"> Emprestar</button>
 	</section>
 	<section class="livro-informacao-direita">

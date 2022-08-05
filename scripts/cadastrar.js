@@ -1,35 +1,3 @@
-const flecha = document.querySelector(".flecha");
-const sair = document.querySelector(".sair");
-const home = document.querySelector("main p");
-const form = document.querySelector("form");
-let aberto = false;
-let generosAberto = false;
-flecha.addEventListener("click", () => {
-  if (!aberto) {
-    sair.style.display = "block";
-    aberto = true;
-  } else {
-    sair.style.display = "none";
-    aberto = false;
-  }
-});
-sair.addEventListener("click", () => {
-  window.location.href = "../pages/login.html";
-});
-home.addEventListener("click", () => {
-  window.location.href = "/pages/index.html";
-});
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  fetch("../data/data.json")
-    .then((res) => {
-      return res.json();
-    })
-    .then((body) => {
-      localStorage.setItem("dados", JSON.stringify(body.data));
-    });
-  window.location.href = "/pages/index.html";
-});
 function abrirGenero() {
   const button = document.querySelector(".generosButton");
   const fieldset = document.createElement("fieldset");
@@ -56,6 +24,84 @@ function fecharGenero() {
   generosAberto = false;
 }
 
+function criarImage() {
+  const fr = new FileReader();
+  fr.onload = () => {
+    return fr.result
+  }
+  fr.readAsDataURL(document.querySelector('.img').files[0])
+}
+
+const flecha = document.querySelector(".flecha");
+const sair = document.querySelector(".sair");
+const home = document.querySelector("main p");
+const form = document.querySelector("form");
+let aberto = false;
+let generosAberto = false;
+flecha.addEventListener("click", () => {
+  if (!aberto) {
+    sair.style.display = "block";
+    aberto = true;
+  } else {
+    sair.style.display = "none";
+    aberto = false;
+  }
+});
+sair.addEventListener("click", () => {
+  window.location.href = "../pages/login.html";
+});
+home.addEventListener("click", () => {
+  window.location.href = "/pages/index.html";
+});
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const tittle = document.querySelector('.titulo').value
+  const author = document.querySelector('.autor').value
+  const synopsis = document.querySelector('.sinopse').value
+  const genre = document.querySelector('.generosButton span').innerText
+  let data = document.querySelector('.data').value
+  data = data.split("-").reverse().join("-");
+  data = data.replaceAll('-', '/')
+  const novoLivro = {
+    tittle: tittle,
+    author: author,
+    genre: genre,
+    status: {
+      isActive: true,
+      description: ""
+    },
+    image: "",
+    systemEntryDate: data,
+    synopsis: synopsis,
+    rentHistory: []
+  }
+  const fr = new FileReader();
+  fr.onload = () => {
+    console.log(fr.result)
+    novoLivro.image = fr.result
+    let livros = JSON.parse(localStorage.getItem('livros'))
+    livros.push(novoLivro)
+    localStorage.setItem('livros', JSON.stringify(livros))
+    console.log(JSON.parse(localStorage.getItem('livros')))
+  }
+  fr.readAsDataURL(document.querySelector('.img').files[0])
+  window.location.href = '/pages/biblioteca.html'
+});
+
+
+
+//muda a imagem do input
+document.querySelector('.img').addEventListener('change', (e) => {
+  const fr = new FileReader();
+  fr.onload = () => {
+    document.querySelector('form label').innerHTML = `
+    <img src="${fr.result}">
+    `
+  }
+  fr.readAsDataURL(document.querySelector('.img').files[0])
+})
+
+//Abrir generos
 document.querySelector(".generos").addEventListener("click", () => {
   if (!generosAberto) {
     abrirGenero();
@@ -64,14 +110,11 @@ document.querySelector(".generos").addEventListener("click", () => {
   }
 });
 
-document.querySelectorAll(".generosOpicoes button").forEach((e) => {
+//Preencher genero
+document.querySelectorAll(".generosOpicoes a").forEach((e) => {
   e.addEventListener("click", () => {
     document.querySelector(".generosButton span").innerText = e.innerText;
   });
-});
-
-document.querySelector(".cancelar").addEventListener("click", () => {
-  document.querySelector(".generosButton span").innerText = "Gênero";
 });
 
 document.querySelector(".cancelar").addEventListener("click", () => {

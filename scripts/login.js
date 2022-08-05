@@ -19,6 +19,13 @@ form.addEventListener("submit", (e) => {
   logins.map((e) => {
     if (e.email === email.value && e.password === password.value) {
       localStorage.setItem("autenticado", true);
+      fetch("../data/data.json")
+        .then((res) => {
+          return res.json();
+        })
+        .then((body) => {
+          localStorage.setItem("livros", JSON.stringify(body.data.books));
+        });
       window.location.href = "../pages/index.html";
     }
   });
