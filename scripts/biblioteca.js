@@ -38,13 +38,74 @@ function janelaSairEvent() {
 }
 
 function mostrarInfo(id) {
-  main.appendChild(criarInfo(livros[id].image, livros[id].tittle, livros[id].synopsis, livros[id].author, livros[id].genre, livros[id].systemEntryDate, livros[id].rentHistory))
+  main.appendChild(criarInfo(livros[id]))
+  if (!livros[id].status.isActive && livros[id].status.description != 'emprestado') {
+    if (document.querySelector('.aluno-dados')) {
+      document.querySelector('.aluno-dados').innerHTML = `
+      <h1>Informações da inativação</h1>
+      <div class="aluno-dados-container">
+      <div>
+      <h2>Motivo</h2>
+      <p>${livros[id].status.description}</p>
+      </div>
+      </div>
+    `
+    } else {
+      document.querySelector('.livro-tela').insertAdjacentHTML('beforeend', `
+      <div class="aluno-dados">
+      <h1>Informações da inativação</h1>
+      <div class="aluno-dados-container">
+      <div>
+      <h2>Motivo</h2>
+      <p>${livros[id].status.description}</p>
+      </div>
+      </div>
+      </div>
+      `)
+    }
+    document.querySelector('.livro-informacao-esquerda').insertAdjacentHTML('beforeend', `<button class="emprestar-button desativado"><img src="../images/emprestarLivro.svg"> Emprestar</button>`)
+    document.querySelector('.livro-informacao-editar').insertAdjacentHTML('afterend', `<button class="livro-informacao-ativar">Ativar</button>`)
+    ativarLivro(id)
+  } else if (!livros[id].status.isActive && livros[id].status.description === 'emprestado') {
+    document.querySelector('.livro-informacao-esquerda').insertAdjacentHTML('beforeend', `<button class="devolver-button"><img src="../images/emprestarLivro.svg">Devolver</button>`)
+    document.querySelector('.livro-informacao-editar').insertAdjacentHTML('afterend', `<button class="livro-informacao-inativar">Inativar</button>`)
+    document.querySelector('.devolver-button').addEventListener('click', () => {
+      console.log(livros[id].status)
+      livros[id].status.isActive = true
+      livros[id].status.description = ''
+      localStorage.setItem('livros', JSON.stringify(livros))
+      window.location.href = '/pages/biblioteca.html'
+    })
+    mostrarInativar()
+  } else {
+    document.querySelector('.livro-informacao-esquerda').insertAdjacentHTML('beforeend', `<button class="emprestar-button"><img src="../images/emprestarLivro.svg">Emprestar</button>`)
+    document.querySelector('.livro-informacao-editar').insertAdjacentHTML('afterend', `<button class="livro-informacao-inativar">Inativar</button>`)
+    mostrarInativar(id)
+    mostrarEmprestar(id)
+  }
 }
-function mostrarEmprestar() {
+function mostrarEmprestar(id) {
   document.querySelector('.livro-informacao-esquerda button').addEventListener('click', () => {
     janelaSair()
     main.appendChild(criarEmprestar())
     janelaSairEvent()
+    document.querySelector('.emprestar-livro button').addEventListener('click', () => {
+      const nome = document.querySelector('.nome').value
+      const turma = document.querySelector('.turma').value
+      let dataRetirada = document.querySelector('.dataRetirada').value
+      dataRetirada = dataRetirada.split("-").reverse().join("-");
+      dataRetirada = dataRetirada.replaceAll('-', '/')
+      let dataEntrega = document.querySelector('.dataEntrega').value
+      dataEntrega = dataEntrega.split("-").reverse().join("-");
+      dataEntrega = dataEntrega.replaceAll('-', '/')
+      const novoEmprestimo = { studentName: nome, class: turma, deliveryDate: dataEntrega, withdrawalDate: dataRetirada, }
+      livros[id].rentHistory.push(novoEmprestimo)
+      livros[id].status.isActive = false
+      livros[id].status.description = 'emprestado'
+      localStorage.setItem('livros', JSON.stringify(livros))
+      console.log(livros[id].rentHistory)
+      window.location.href = '/pages/biblioteca.html'
+    })
   })
 }
 function mostrarHistorico(id) {
@@ -54,11 +115,25 @@ function mostrarHistorico(id) {
     janelaSairEvent()
   })
 }
-function mostrarInativar() {
+function mostrarInativar(id) {
   document.querySelector('.livro-informacao-inativar').addEventListener('click', () => {
     janelaSair()
     main.appendChild(criarInativar())
     janelaSairEvent()
+    document.querySelector('.inativar-livro button').addEventListener('click', () => {
+      livros[id].status.isActive = false
+      livros[id].status.description = document.querySelector('.inativar-livro textarea').value
+      localStorage.setItem('livros', JSON.stringify(livros))
+      window.location.href = '/pages/biblioteca.html'
+    })
+  })
+}
+function ativarLivro(id) {
+  document.querySelector('.livro-informacao-ativar').addEventListener('click', () => {
+    livros[id].status.isActive = true
+    livros[id].status.description = ''
+    localStorage.setItem('livros', JSON.stringify(livros))
+    window.location.href = '/pages/biblioteca.html'
   })
 }
 
@@ -67,12 +142,8 @@ function articleClick(e) {
   const id = e.currentTarget.id
   mostrarInfo(id)
   janelaSairEvent()
-  mostrarEmprestar()
   mostrarHistorico(id)
-  mostrarInativar()
-
   document.querySelector('.livro-informacao-editar').addEventListener('click', () => {
-    console.log(livros[id])
     localStorage.setItem('livroParaEditar', JSON.stringify(livros[id]))
     window.location.href = "../pages/editar.html"
   })

@@ -1,6 +1,5 @@
 
 export function criarDadosDoAluno(rentHistory) {
-	console.log(rentHistory)
 	return `
 <div class="aluno-dados">
 	<h1>Dados do aluno</h1>
@@ -26,12 +25,13 @@ export function criarDadosDoAluno(rentHistory) {
     `
 }
 
-export function criarInfo(image, tittle, synopsis, author, genre, systemEntryDate, rentHistory) {
+export function criarInfo(livro) {
+	console.log(livro)
 	const livroInformacaoTela = document.createElement('div')
 	livroInformacaoTela.className = 'livro-tela'
 	let img
-	if (image.charAt(0) === '.') {
-		img = `.${image}`
+	if (livro.image.charAt(0) === '.') {
+		img = `.${livro.image}`
 	} else {
 		img = image
 	}
@@ -40,29 +40,27 @@ export function criarInfo(image, tittle, synopsis, author, genre, systemEntryDat
 	<img class="livro-informacao-sair" src="../images/sairBibliotecaInformacao.png">
 	<section class="livro-informacao-esquerda">
 		<img src="${img}">
-		<button><img src="../images/emprestarLivro.svg"> Emprestar</button>
 	</section>
 	<section class="livro-informacao-direita">
-		<h1>${tittle}</h1>
+		<h1>${livro.tittle}</h1>
 		<h2>Sinopse</h2>
-		<p>${synopsis}</p>
+		<p>${livro.synopsis}</p>
 		<h2>Autor</h2>
-		<p>${author}</p>
+		<p>${livro.author}</p>
 		<h2>Gênero</h2>
-		<p>${genre}</p>
+		<p>${livro.genre}</p>
 		<h2>Data de entrada</h2>
-		<p>${systemEntryDate}</p>
+		<p>${livro.systemEntryDate}</p>
 		<div class="livro-informacao-direita-botoes">
 			<button class="livro-informacao-editar">Editar</button>
-			<button class="livro-informacao-inativar">Inativar</button>
 			<button class="livro-informacao-historico">Histórico</button>
 		</div>
 	</section>
 </div>
 `
 	livroInformacaoTela.insertAdjacentHTML('beforeend', livroInformacao)
-	if (rentHistory.length > 0) {
-		livroInformacaoTela.insertAdjacentHTML('beforeend', criarDadosDoAluno(rentHistory[0]))
+	if (livro.rentHistory.length > 0) {
+		livroInformacaoTela.insertAdjacentHTML('beforeend', criarDadosDoAluno(livro.rentHistory[livro.rentHistory.length - 1]))
 	}
 	return livroInformacaoTela
 }
@@ -130,10 +128,10 @@ export function criarEmprestar() {
         <img class="livro-informacao-sair" src="../images/sairBibliotecaInformacao.png">
         <h2>Informe os dados do aluno antes de continuar</h2>
         <div class="emprestar-livro-inputs">
-            <input type="text" placeholder="Nome do Aluno">
-            <input type="text" placeholder="Turma">
-            <input class="data" type="date" onfocus="(this.type='date')" value="Data da retirada" />
-            <input class="data" type="date" onfocus="(this.type='date')" value="Data da Entrega"/>
+            <input class="nome" type="text" placeholder="Nome do Aluno">
+            <input class="turma" type="text" placeholder="Turma">
+            <input class="dataRetirada" type="date" onfocus="(this.type='date')" value="Data da retirada" />
+            <input class="dataEntrega" type="date" onfocus="(this.type='date')" value="Data da Entrega"/>
         </div>
         <button><img src="../images/emprestarLivro.svg"> Emprestar</button>
     </div>
@@ -156,6 +154,7 @@ export function criarInativar() {
     `
 
 	livroInformacaoTela.insertAdjacentHTML('beforeend', inativar)
+
 
 	return livroInformacaoTela
 }

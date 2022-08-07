@@ -269,7 +269,10 @@ article span {
   width: 27.2rem;
 }
 
-.livro-informacao-esquerda button {
+.emprestar-button {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
   width: 27.2rem;
   font-size: 1.6rem;
   font-weight: 500;
@@ -341,6 +344,16 @@ article span {
   border: 0.1rem solid #ED5E5E;
   border-radius: 0.5rem;
   color: #ED5E5E;
+  padding: 1.6rem 2.4rem;
+  background-color: #FFFFFF;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.livro-informacao-ativar {
+  border: 0.1rem solid #49D749;
+  border-radius: 0.5rem;
+  color: #49D749;
   padding: 1.6rem 2.4rem;
   background-color: #FFFFFF;
   font-size: 1.6rem;
@@ -539,4 +552,21 @@ tbody tr {
     align-items: center;
     height: fit-content;
   }
+}
+
+.desativado {
+  opacity: 0.5;
+}
+
+.devolver-button {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 27.2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1.6rem 8.2rem;
+  background-color: #F4F4F4;
+  border: 0.1rem solid #ADB5BD;
+  border-radius: 0.5rem;
 }

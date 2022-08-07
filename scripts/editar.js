@@ -68,6 +68,7 @@ form.addEventListener('submit', (e) => {
             data = data.split("-").reverse().join("-");
             data = data.replaceAll('-', '/')
             e.systemEntryDate = data
+            localStorage.removeItem('livroParaEditar')
             window.location.href = '/pages/biblioteca.html'
         }
     })
