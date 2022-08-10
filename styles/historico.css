@@ -94,8 +94,15 @@ main p {
 }
 
 table {
-    width: 95%;
+    width: fit-contents;
+    overflow: auto;
+}
 
+tbody {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 th {
@@ -112,11 +119,23 @@ td {
 th,
 td {
     text-align: start;
-    padding: 1rem 0 1rem 4rem;
+    padding: 1rem 4rem;
 }
 
-tbody tr {
+td {
+
     border-bottom: solid 0.1rem #CDCDCD;
+}
+
+tr {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.livro-historico-icone {
+    width: 1.8rem;
 }
 
 .livro-historico-icone-sublinhado {
@@ -124,4 +143,22 @@ tbody tr {
     background-color: #000000;
     width: 10.5rem;
     margin-top: 0.8rem;
+}
+
+@media (max-width:350px) {
+    header {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    header div div {
+        justify-content: center;
+    }
+}
+
+@media (max-width:420px) {
+    tr {
+        width: 100%;
+    }
 }

@@ -34,7 +34,7 @@ function criarImage() {
 
 const flecha = document.querySelector(".flecha");
 const sair = document.querySelector(".sair");
-const home = document.querySelector("main p");
+const home = document.querySelector("main p a");
 const form = document.querySelector("form");
 let aberto = false;
 let generosAberto = false;
@@ -90,7 +90,6 @@ form.addEventListener("submit", (e) => {
 
 
 
-//muda a imagem do input
 document.querySelector('.img').addEventListener('change', (e) => {
   const fr = new FileReader();
   fr.onload = () => {
@@ -101,7 +100,6 @@ document.querySelector('.img').addEventListener('change', (e) => {
   fr.readAsDataURL(document.querySelector('.img').files[0])
 })
 
-//Abrir generos
 document.querySelector(".generos").addEventListener("click", () => {
   if (!generosAberto) {
     abrirGenero();
@@ -110,7 +108,6 @@ document.querySelector(".generos").addEventListener("click", () => {
   }
 });
 
-//Preencher genero
 document.querySelectorAll(".generosOpicoes a").forEach((e) => {
   e.addEventListener("click", () => {
     document.querySelector(".generosButton span").innerText = e.innerText;

@@ -80,8 +80,11 @@ main p {
 .livro-editar-container {
     display: flex;
     flex-direction: row;
-    width: fit-content;
+    width: 90%;
+    max-width: fit-content;
     gap: 6rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .livro-image {
@@ -115,6 +118,7 @@ form {
     grid-template-columns: repeat(2, 35rem);
     grid-template-rows: repeat(4, 5.6rem);
     gap: 2.2rem;
+    align-items: center;
 }
 
 .titulo {
@@ -141,6 +145,8 @@ form {
     grid-column-end: 3;
     gap: 2.4rem;
     justify-content: end;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 button {
@@ -206,4 +212,35 @@ legend {
 
 input {
     padding-top: 0.5rem;
+}
+
+@media (max-width: 1085px) {
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+
+    fieldset,
+    .generos {
+        width: 90%;
+    }
+
+    .generos fieldset {
+        width: 100%;
+    }
+}
+
+@media (max-width:350px) {
+    header {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    header div div {
+        justify-content: center;
+    }
 }

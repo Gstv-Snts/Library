@@ -1,6 +1,6 @@
 const flecha = document.querySelector(".flecha");
 const sair = document.querySelector(".sair");
-const home = document.querySelector("main p");
+const home = document.querySelector("main p a");
 const form = document.querySelector('form')
 let aberto = false;
 let generosAberto = false;

@@ -1,6 +1,6 @@
 const flecha = document.querySelector(".flecha");
 const sair = document.querySelector(".sair");
-const home = document.querySelector("main p");
+const home = document.querySelector("main p a");
 let aberto = false;
 sair.addEventListener("click", () => {
     localStorage.removeItem("autenticado");
@@ -11,19 +11,15 @@ home.addEventListener("click", () => {
 });
 
 const livros = JSON.parse(localStorage.getItem('livros'))
+function limparTable() {
+}
 
 livros.forEach((d) => {
     d.rentHistory.forEach((e) => {
-        console.log(d)
-        const historico = `
-        <tr>
-            <td>${e.studentName}</td>
-            <td>${e.class}</td>
-            <td>${d.tittle}</td>
-            <td>${e.withdrawalDate}</td>
-            <td>${e.deliveryDate}</td>
-        </tr>
-        `
-        document.querySelector('tbody').insertAdjacentHTML('beforeend', historico)
+        document.getElementById('aluno').insertAdjacentHTML('beforeend', `<td>${e.studentName}</td>`)
+        document.getElementById('turma').insertAdjacentHTML('beforeend', `<td>${e.class}</td>`)
+        document.getElementById('livro').insertAdjacentHTML('beforeend', `<td>${d.tittle}</td>`)
+        document.getElementById('dataRetirada').insertAdjacentHTML('beforeend', `<td>${e.withdrawalDate}</td>`)
+        document.getElementById('dataEntrega').insertAdjacentHTML('beforeend', `<td>${e.deliveryDate}</td>`)
     })
 })

@@ -1,7 +1,7 @@
 import { criarInfo, criarEmprestar, criarHistorico, criarInativar } from "./criarTelas.js";
 const flecha = document.querySelector(".flecha");
 const sair = document.querySelector(".sair");
-const home = document.querySelector("main p");
+const home = document.querySelector("main p a");
 const main = document.querySelector('main')
 let aberto = false;
 let filtrosAberto = false;
@@ -70,14 +70,16 @@ function mostrarInfo(id) {
     document.querySelector('.livro-informacao-esquerda').insertAdjacentHTML('beforeend', `<button class="devolver-button"><img src="../images/emprestarLivro.svg">Devolver</button>`)
     document.querySelector('.livro-informacao-editar').insertAdjacentHTML('afterend', `<button class="livro-informacao-inativar">Inativar</button>`)
     document.querySelector('.devolver-button').addEventListener('click', () => {
-      console.log(livros[id].status)
       livros[id].status.isActive = true
       livros[id].status.description = ''
       localStorage.setItem('livros', JSON.stringify(livros))
       window.location.href = '/pages/biblioteca.html'
     })
-    mostrarInativar()
+    mostrarInativar(id)
   } else {
+    if (document.querySelector('.aluno-dados')) {
+      document.querySelector('.livro-informacao-conteudo').removeChild(document.querySelector('.aluno-dados'))
+    }
     document.querySelector('.livro-informacao-esquerda').insertAdjacentHTML('beforeend', `<button class="emprestar-button"><img src="../images/emprestarLivro.svg">Emprestar</button>`)
     document.querySelector('.livro-informacao-editar').insertAdjacentHTML('afterend', `<button class="livro-informacao-inativar">Inativar</button>`)
     mostrarInativar(id)
@@ -103,7 +105,6 @@ function mostrarEmprestar(id) {
       livros[id].status.isActive = false
       livros[id].status.description = 'emprestado'
       localStorage.setItem('livros', JSON.stringify(livros))
-      console.log(livros[id].rentHistory)
       window.location.href = '/pages/biblioteca.html'
     })
   })
@@ -111,7 +112,13 @@ function mostrarEmprestar(id) {
 function mostrarHistorico(id) {
   document.querySelector('.livro-informacao-historico').addEventListener('click', () => {
     janelaSair()
-    main.appendChild(criarHistorico(livros[id].rentHistory))
+    main.appendChild(criarHistorico())
+    livros[id].rentHistory.forEach((e, i) => {
+      document.getElementById('aluno').insertAdjacentHTML('beforeend', `<td>${e.studentName}</td>`)
+      document.getElementById('turma').insertAdjacentHTML('beforeend', `<td>${e.class}</td>`)
+      document.getElementById('dataRetirada').insertAdjacentHTML('beforeend', `<td>${e.withdrawalDate}</td>`)
+      document.getElementById('dataEntrega').insertAdjacentHTML('beforeend', `<td>${e.deliveryDate}</td>`)
+    })
     janelaSairEvent()
   })
 }
@@ -208,7 +215,6 @@ document.querySelectorAll(".filtrarOpicoes button").forEach((e) => {
 preencherLivrosContainer();
 
 document.querySelector(".filtroGenero").addEventListener("click", (e) => {
-  console.log('genero')
   livros.sort((a, b) => {
     if (a.genre < b.genre) return -1;
     if (a.genre > b.genre) return 1;

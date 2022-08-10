@@ -84,6 +84,7 @@ form {
   row-gap: 2.4rem;
   column-gap: 3.5rem;
   justify-content: center;
+  padding-bottom: 2rem;
 }
 
 .img {
@@ -92,6 +93,8 @@ form {
 
 form label {
   display: flex;
+  width: 17.2rem;
+  height: 20.6rem;
   justify-content: center;
   align-items: center;
   grid-row-start: 1;
@@ -123,6 +126,8 @@ textarea,
   font-size: 1.6rem;
   font-weight: 400;
   padding: 1.6rem;
+  width: 35rem;
+  height: 5.3rem;
 }
 
 textarea {
@@ -132,6 +137,7 @@ textarea {
 .titulo {
   grid-column-start: 2;
   grid-column-end: 4;
+  width: 100%;
 }
 
 .autor {
@@ -144,6 +150,8 @@ textarea {
   grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 4;
+  width: 100%;
+  height: 100%;
 }
 
 .genero {
@@ -193,11 +201,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .generos {
-  width: 38.5rem;
+  width: 35rem;
   height: fit-content;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  grid-column-start: 4;
+  grid-column-end: 6;
 }
 
 .generosButton {
@@ -259,4 +269,64 @@ legend {
 .arquivo-img {
   width: 300px;
   height: 300px;
+}
+
+@media (max-width: 1120px) {
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main p {
+    margin-bottom: 3rem;
+  }
+
+  .sinopse {
+    width: 35rem;
+    height: 5.3rem;
+  }
+
+  .titulo {
+    width: 35rem;
+  }
+}
+
+@media (max-width: 450px) {
+
+  form label,
+  input,
+  textarea,
+  .generos {
+    width: 90%;
+  }
+
+  .botoes {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .botoes button {
+    width: 80%;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  header div div {
+    justify-content: center;
+  }
+
+  .sinopse {
+    width: 90%;
+  }
+
+  .titulo {
+    width: 90%;
+  }
 }

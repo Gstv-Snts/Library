@@ -29,11 +29,13 @@ export function criarInfo(livro) {
 	console.log(livro)
 	const livroInformacaoTela = document.createElement('div')
 	livroInformacaoTela.className = 'livro-tela'
+	const livroInformacaoConteudo = document.createElement('div')
+	livroInformacaoConteudo.className = 'livro-informacao-conteudo'
 	let img
 	if (livro.image.charAt(0) === '.') {
 		img = `.${livro.image}`
 	} else {
-		img = image
+		img = livro.image
 	}
 	const livroInformacao = `
 <div class="livro-informacao">
@@ -58,10 +60,11 @@ export function criarInfo(livro) {
 	</section>
 </div>
 `
-	livroInformacaoTela.insertAdjacentHTML('beforeend', livroInformacao)
+	livroInformacaoConteudo.insertAdjacentHTML('beforeend', livroInformacao)
 	if (livro.rentHistory.length > 0) {
-		livroInformacaoTela.insertAdjacentHTML('beforeend', criarDadosDoAluno(livro.rentHistory[livro.rentHistory.length - 1]))
+		livroInformacaoConteudo.insertAdjacentHTML('beforeend', criarDadosDoAluno(livro.rentHistory[livro.rentHistory.length - 1]))
 	}
+	livroInformacaoTela.appendChild(livroInformacaoConteudo)
 	return livroInformacaoTela
 }
 
@@ -73,50 +76,40 @@ export function criarHistorico(rentHistory) {
 	<img class="livro-informacao-sair" src="../images/sairBibliotecaInformacao.png">
 	<h1>Histórico de empréstimos do livro</h1>
 	<table>
-		<thead>
-			<th>Aluno</th>
-			<th>Turma</th>
-			<th>Data da retirada</th>
-			<th>Data da Entrega</th>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<img class="livro-historico-icone" src="/images/historicoIcone.svg">
-					<div class="livro-historico-icone-sublinhado"></div>
-				</td>
-				<td>
-					<img src="/images/historicoIcone.svg">
-					<div class="livro-historico-icone-sublinhado"></div>
-				</td>
-				<td>
-					<img src="/images/historicoIcone.svg">
-					<div class="livro-historico-icone-sublinhado"></div>
-				</td>
-				<td>
-					<img src="/images/historicoIcone.svg">
-					<div class="livro-historico-icone-sublinhado"></div>
-				</td>
-			</tr>
-		</tbody>
+	<tbody>
+		<tr id="aluno">
+		<th>Aluno</th>
+			<td>
+				<img class="livro-historico-icone" src="/images/historicoIcone.svg">
+				<div class="livro-historico-icone-sublinhado"></div>
+			</td>
+		</tr>
+		<tr id="turma">
+		<th>Turma</th>
+			<td>
+				<img class="livro-historico-icone" src="/images/historicoIcone.svg">
+				<div class="livro-historico-icone-sublinhado"></div>
+			</td>
+		</tr>
+		<tr id="dataRetirada">
+		<th>Data da Retirada</th>
+			<td>
+				<img class="livro-historico-icone" src="/images/historicoIcone.svg">
+				<div class="livro-historico-icone-sublinhado"></div>
+			</td>
+		</tr>
+		<tr id="dataEntrega">
+		<th>Data da Entrega</th>
+			<td>
+				<img class="livro-historico-icone" src="/images/historicoIcone.svg">
+				<div class="livro-historico-icone-sublinhado"></div>
+			</td>
+		</tr>
+	</tbody>
 	</table>
 </div>
     `
 	livroInformacaoTela.insertAdjacentHTML('beforeend', historico)
-	rentHistory.forEach((e) => {
-		const historico = `
-        <tr>
-        <td>${e.studentName}</td>
-        <td>${e.class}</td>
-        <td>${e.withdrawalDate}</td>
-        <td>${e.deliveryDate}</td>
-        </tr>
-        `
-		console.log(e)
-		console.log(livroInformacaoTela.childNodes[1].childNodes[5].childNodes[3])
-		livroInformacaoTela.childNodes[1].childNodes[5].childNodes[3].insertAdjacentHTML('beforeend', historico)
-	})
-
 	return livroInformacaoTela
 }
 

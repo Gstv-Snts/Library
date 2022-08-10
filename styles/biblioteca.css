@@ -243,6 +243,7 @@ article span {
   background-color: rgba(52, 58, 64, 0.7);
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
 .livro-informacao {
@@ -328,6 +329,7 @@ article span {
   justify-content: center;
   align-items: center;
   margin-top: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .livro-informacao-editar {
@@ -372,8 +374,8 @@ article span {
 
 .livro-informacao-sair {
   position: absolute;
-  right: 3.5%;
-  top: 6%;
+  right: 2rem;
+  top: 2rem;
   width: 1.6rem;
   cursor: pointer;
 }
@@ -385,6 +387,8 @@ article span {
   background-color: #FFFFFF;
   padding: 4rem;
   gap: 2.4rem;
+  width: 90%;
+  max-width: 80.4rem;
 }
 
 .emprestar-livro:last-child {
@@ -401,6 +405,11 @@ article span {
   grid-template-columns: repeat(2, 35rem);
   grid-template-rows: repeat(2, 5.3rem);
   gap: 2.4rem;
+}
+
+.emprestar-livro-inputs input {
+  width: 100%;
+  height: 5.3rem;
 }
 
 .emprestar-livro input {
@@ -465,7 +474,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   flex-direction: column;
   gap: 2.9rem;
-  width: fit-content;
+  width: 90%;
+  max-width: fit-content;
   background-color: #FFFFFF;
   height: fit-content;
   position: relative;
@@ -478,7 +488,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 table {
-  width: 97.8rem;
+  width: fit-contents;
+  overflow: auto;
+}
+
+tbody {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 th {
@@ -495,11 +513,23 @@ td {
 th,
 td {
   text-align: start;
-  padding: 1rem 0 1rem 4rem;
+  padding: 1rem 4rem;
 }
 
-tbody tr {
+td {
+
   border-bottom: solid 0.1rem #CDCDCD;
+}
+
+tr {
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.livro-historico-icone {
+  width: 1.8rem;
 }
 
 .livro-historico-icone-sublinhado {
@@ -510,6 +540,8 @@ tbody tr {
 }
 
 .inativar-livro {
+  width: 90%;
+  max-width: 80.4rem;
   display: flex;
   position: inherit;
   flex-direction: column;
@@ -526,7 +558,7 @@ tbody tr {
 }
 
 .inativar-livro textarea {
-  width: 72.4rem;
+  width: 100%;
   height: 12.9rem;
   border: 0.1rem solid #133052;
   border-radius: 0.5rem;
@@ -569,4 +601,79 @@ tbody tr {
   background-color: #F4F4F4;
   border: 0.1rem solid #ADB5BD;
   border-radius: 0.5rem;
+}
+
+.livro-informacao-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+  height: fit-content;
+  overflow: auto;
+}
+
+
+@media (max-width:900px) {
+  .emprestar-livro-inputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .emprestar-livro {
+    max-width: 50rem;
+  }
+
+  .emprestar-livro button {
+    width: 100%;
+    padding: 1.6rem 0;
+  }
+}
+
+@media (max-width:850px) {
+  .livro-informacao {
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .aluno-dados {
+    width: 90%;
+  }
+
+  .aluno-dados-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width:350px) {
+  header {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  header div div {
+    justify-content: center;
+  }
+
+  .filtrar {
+    width: 100%;
+  }
+
+  .livro-informacao-esquerda img {
+    width: 100%;
+  }
+
+  .livro-informacao-esquerda button {
+    justify-content: center;
+    padding: 1.6rem 0;
+    width: 100%;
+  }
+
+  .livro-informacao-esquerda {
+    width: 100%;
+  }
 }
