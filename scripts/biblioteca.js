@@ -109,19 +109,81 @@ function mostrarEmprestar(id) {
     })
   })
 }
+
+
 function mostrarHistorico(id) {
   document.querySelector('.livro-informacao-historico').addEventListener('click', () => {
     janelaSair()
     main.appendChild(criarHistorico())
-    livros[id].rentHistory.forEach((e, i) => {
-      document.getElementById('aluno').insertAdjacentHTML('beforeend', `<td>${e.studentName}</td>`)
-      document.getElementById('turma').insertAdjacentHTML('beforeend', `<td>${e.class}</td>`)
-      document.getElementById('dataRetirada').insertAdjacentHTML('beforeend', `<td>${e.withdrawalDate}</td>`)
-      document.getElementById('dataEntrega').insertAdjacentHTML('beforeend', `<td>${e.deliveryDate}</td>`)
+
+    const historico = livros[id].rentHistory
+
+    function limparTable() {
+      console.log(document.querySelector('#aluno').childNodes)
+      for (let i = 0; document.querySelector('#aluno').childNodes.length > 4; i++) {
+        document.querySelector('#aluno').removeChild(document.querySelector('#aluno').childNodes[4])
+      }
+      for (let i = 0; document.querySelector('#turma').childNodes.length > 4; i++) {
+        document.querySelector('#turma').removeChild(document.querySelector('#turma').childNodes[4])
+      }
+      for (let i = 0; document.querySelector('#dataRetirada').childNodes.length > 4; i++) {
+        document.querySelector('#dataRetirada').removeChild(document.querySelector('#dataRetirada').childNodes[4])
+      }
+      for (let i = 0; document.querySelector('#dataEntrega').childNodes.length > 4; i++) {
+        document.querySelector('#dataEntrega').removeChild(document.querySelector('#dataEntrega').childNodes[4])
+      }
+    }
+
+    function preencherTable() {
+
+      historico.forEach((e) => {
+        console.log(e)
+        document.getElementById('aluno').insertAdjacentHTML('beforeend', `<td>${e.studentName}</td>`)
+        document.getElementById('turma').insertAdjacentHTML('beforeend', `<td>${e.class}</td>`)
+        document.getElementById('dataRetirada').insertAdjacentHTML('beforeend', `<td>${e.withdrawalDate}</td>`)
+        document.getElementById('dataEntrega').insertAdjacentHTML('beforeend', `<td>${e.deliveryDate}</td>`)
+      })
+    }
+
+    preencherTable()
+
+    document.querySelectorAll('#aluno td')[0].addEventListener('click', (e) => {
+      historico.sort((a, b) => {
+        if (a.studentName < b.studentName) return -1;
+        if (a.studentName > b.studentName) return 1;
+      });
+      limparTable()
+      preencherTable()
+    })
+    document.querySelectorAll('#turma td')[0].addEventListener('click', () => {
+      historico.sort((a, b) => {
+        if (a.class < b.class) return -1;
+        if (a.class > b.class) return 1;
+      });
+      limparTable()
+      preencherTable()
+    })
+    document.querySelectorAll('#dataRetirada td')[0].addEventListener('click', () => {
+      historico.sort((a, b) => {
+        if (a.withdrawalDate < b.withdrawalDate) return -1;
+        if (a.withdrawalDate > b.withdrawalDate) return 1;
+      });
+      limparTable()
+      preencherTable()
+    })
+    document.querySelectorAll('#dataEntrega td')[0].addEventListener('click', () => {
+      historico.sort((a, b) => {
+        if (a.deliveryDate < b.deliveryDate) return -1;
+        if (a.deliveryDate > b.deliveryDate) return 1;
+      });
+      limparTable()
+      preencherTable()
     })
     janelaSairEvent()
   })
 }
+
+
 function mostrarInativar(id) {
   document.querySelector('.livro-informacao-inativar').addEventListener('click', () => {
     janelaSair()
@@ -166,6 +228,7 @@ flecha.addEventListener("click", () => {
   }
 });
 sair.addEventListener("click", () => {
+  localStorage.removeItem('autenticado')
   window.location.href = "../pages/login.html";
 });
 home.addEventListener("click", () => {

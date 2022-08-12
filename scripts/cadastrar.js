@@ -48,6 +48,7 @@ flecha.addEventListener("click", () => {
   }
 });
 sair.addEventListener("click", () => {
+  localStorage.removeItem('autenticado')
   window.location.href = "../pages/login.html";
 });
 home.addEventListener("click", () => {
