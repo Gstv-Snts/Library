@@ -13,12 +13,10 @@ form.addEventListener("submit", (e) => {
         dados.push(e)
       })
     }).then(() => {
-      console.log(dados)
       const email = document.querySelector(".email");
       const password = document.querySelector(".password");
       dados.forEach((d) => {
         if (d.email === email.value && d.password === password.value) {
-          console.log('funcionou')
           localStorage.setItem("autenticado", true);
           fetch("../data/data.json")
             .then((res) => {
@@ -29,7 +27,6 @@ form.addEventListener("submit", (e) => {
             });
           window.location.href = "../pages/index.html";
         }
-        console.log('não funcionou')
       })
     }
     )

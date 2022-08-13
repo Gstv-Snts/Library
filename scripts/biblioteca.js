@@ -8,7 +8,23 @@ let filtrosAberto = false;
 
 const livros = JSON.parse(localStorage.getItem("livros"));
 
-//preenche a tela
+flecha.addEventListener("click", () => {
+  if (!aberto) {
+    sair.style.display = "block";
+    aberto = true;
+  } else {
+    sair.style.display = "none";
+    aberto = false;
+  }
+});
+sair.addEventListener("click", () => {
+  localStorage.removeItem('autenticado')
+  window.location.href = "../pages/login.html";
+});
+home.addEventListener("click", () => {
+  window.location.href = "/pages/index.html";
+});
+
 function preencherLivrosContainer() {
   document.querySelector('.livros-container').innerHTML = livros.map((e, i) => {
     let image
@@ -31,6 +47,7 @@ function janelaSair() {
   const main = document.querySelector('main')
   main.removeChild(main.lastElementChild)
 }
+
 function janelaSairEvent() {
   document.querySelector('.livro-informacao-sair').addEventListener('click', () => {
     janelaSair()
@@ -86,6 +103,7 @@ function mostrarInfo(id) {
     mostrarEmprestar(id)
   }
 }
+
 function mostrarEmprestar(id) {
   document.querySelector('.livro-informacao-esquerda button').addEventListener('click', () => {
     janelaSair()
@@ -197,6 +215,7 @@ function mostrarInativar(id) {
     })
   })
 }
+
 function ativarLivro(id) {
   document.querySelector('.livro-informacao-ativar').addEventListener('click', () => {
     livros[id].status.isActive = true
@@ -206,7 +225,6 @@ function ativarLivro(id) {
   })
 }
 
-//abre info do livro no click
 function articleClick(e) {
   const id = e.currentTarget.id
   mostrarInfo(id)
@@ -218,22 +236,7 @@ function articleClick(e) {
   })
 }
 
-flecha.addEventListener("click", () => {
-  if (!aberto) {
-    sair.style.display = "block";
-    aberto = true;
-  } else {
-    sair.style.display = "none";
-    aberto = false;
-  }
-});
-sair.addEventListener("click", () => {
-  localStorage.removeItem('autenticado')
-  window.location.href = "../pages/login.html";
-});
-home.addEventListener("click", () => {
-  window.location.href = "/pages/index.html";
-});
+
 
 function abrirFiltro() {
   const button = document.querySelector(".filtrarButton");

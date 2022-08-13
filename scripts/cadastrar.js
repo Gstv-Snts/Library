@@ -12,12 +12,6 @@ function abrirGenero() {
 }
 
 function fecharGenero() {
-  const fieldset = document.querySelector(".generosButton");
-  const button = document.createElement("button");
-  button.innerHTML = fieldset.innerHTML;
-  button.className = fieldset.className;
-  document.querySelector(".generos").replaceChild(button, fieldset);
-  document.querySelector(".generosButtonLegend").style.display = "none";
   document.querySelector(".generosButton img").src =
     "http://localhost:5500/images/cadastrarGeneroFlechaBaixo.svg";
   document.querySelector(".generosOpicoes").style.display = "none";
@@ -56,37 +50,42 @@ home.addEventListener("click", () => {
 });
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const tittle = document.querySelector('.titulo').value
-  const author = document.querySelector('.autor').value
-  const synopsis = document.querySelector('.sinopse').value
   const genre = document.querySelector('.generosButton span').innerText
-  let data = document.querySelector('.data').value
-  data = data.split("-").reverse().join("-");
-  data = data.replaceAll('-', '/')
-  const novoLivro = {
-    tittle: tittle,
-    author: author,
-    genre: genre,
-    status: {
-      isActive: true,
-      description: ""
-    },
-    image: "",
-    systemEntryDate: data,
-    synopsis: synopsis,
-    rentHistory: []
+  if (genre === 'Selecione' || genre === 'Gênero') {
+    alert('Selecione algum genero')
+  } else {
+
+    const tittle = document.querySelector('.titulo').value
+    const author = document.querySelector('.autor').value
+    const synopsis = document.querySelector('.sinopse').value
+    let data = document.querySelector('.data').value
+    data = data.split("-").reverse().join("-");
+    data = data.replaceAll('-', '/')
+    const novoLivro = {
+      tittle: tittle,
+      author: author,
+      genre: genre,
+      status: {
+        isActive: true,
+        description: ""
+      },
+      image: "",
+      systemEntryDate: data,
+      synopsis: synopsis,
+      rentHistory: []
+    }
+    const fr = new FileReader();
+    fr.onload = () => {
+      console.log(fr.result)
+      novoLivro.image = fr.result
+      let livros = JSON.parse(localStorage.getItem('livros'))
+      livros.push(novoLivro)
+      localStorage.setItem('livros', JSON.stringify(livros))
+      console.log(JSON.parse(localStorage.getItem('livros')))
+    }
+    fr.readAsDataURL(document.querySelector('.img').files[0])
+    window.location.href = '/pages/biblioteca.html'
   }
-  const fr = new FileReader();
-  fr.onload = () => {
-    console.log(fr.result)
-    novoLivro.image = fr.result
-    let livros = JSON.parse(localStorage.getItem('livros'))
-    livros.push(novoLivro)
-    localStorage.setItem('livros', JSON.stringify(livros))
-    console.log(JSON.parse(localStorage.getItem('livros')))
-  }
-  fr.readAsDataURL(document.querySelector('.img').files[0])
-  window.location.href = '/pages/biblioteca.html'
 });
 
 
@@ -118,3 +117,40 @@ document.querySelectorAll(".generosOpicoes a").forEach((e) => {
 document.querySelector(".cancelar").addEventListener("click", () => {
   window.location.href = "/pages/index.html";
 });
+
+document.querySelector('.titulo-container').addEventListener('click', (e) => {
+  const div = document.querySelector(".titulo-container");
+  const fieldset = document.createElement("fieldset");
+  fieldset.innerHTML = div.innerHTML;
+  fieldset.insertAdjacentHTML('beforeend', `<legend>Título</legend>`)
+  fieldset.className = div.className;
+  document.querySelector("form").replaceChild(fieldset, div);
+  document.querySelector('.titulo').focus()
+})
+document.querySelector('.autor').addEventListener('focus', (e) => {
+  const div = document.querySelector(".autor-container");
+  const fieldset = document.createElement("fieldset");
+  fieldset.innerHTML = div.innerHTML;
+  fieldset.insertAdjacentHTML('beforeend', `<legend>Autor</legend>`)
+  fieldset.className = div.className;
+  document.querySelector("form").replaceChild(fieldset, div);
+  document.querySelector('.autor').focus()
+})
+document.querySelector('.sinopse').addEventListener('focus', (e) => {
+  const div = document.querySelector(".sinopse-container");
+  const fieldset = document.createElement("fieldset");
+  fieldset.innerHTML = div.innerHTML;
+  fieldset.insertAdjacentHTML('beforeend', `<legend>Sínopse</legend>`)
+  fieldset.className = div.className;
+  document.querySelector("form").replaceChild(fieldset, div);
+  document.querySelector('.sinopse').focus()
+})
+document.querySelector('.data').addEventListener('focus', (e) => {
+  const div = document.querySelector(".data-container");
+  const fieldset = document.createElement("fieldset");
+  fieldset.innerHTML = div.innerHTML;
+  fieldset.insertAdjacentHTML('beforeend', `<legend>Data</legend>`)
+  fieldset.className = div.className;
+  document.querySelector("form").replaceChild(fieldset, div);
+  document.querySelector('.data').focus()
+})

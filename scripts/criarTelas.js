@@ -68,7 +68,7 @@ export function criarInfo(livro) {
 	return livroInformacaoTela
 }
 
-export function criarHistorico(rentHistory) {
+export function criarHistorico() {
 	const livroInformacaoTela = document.createElement('div')
 	livroInformacaoTela.className = 'livro-tela'
 	const historico = `

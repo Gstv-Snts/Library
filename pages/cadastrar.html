@@ -34,11 +34,17 @@
       </p>
       <form>
         <label for="img"><img class="label-icon" src="/images/imgCadastrar.svg" />Capa</label>
-        <input id="img" class="img" type="file" />
-        <input class="titulo" type="text" placeholder="Título" />
-        <input class="autor" type="text" placeholder="Autor" />
-        <textarea class="sinopse" placeholder="Sinopse"></textarea>
 
+        <input id="img" class="img" type="file" />
+        <div class="titulo-container">
+          <input class="titulo" type="text" placeholder="Título" />
+        </div>
+        <div class="autor-container">
+          <input class="autor" type="text" placeholder="Autor" />
+        </div>
+        <div class="sinopse-container">
+          <textarea class="sinopse" placeholder="Sinopse"></textarea>
+        </div>
         <div class="generos">
           <button class="generosButton">
             <legend class="generosButtonLegend">Gênero</legend>
@@ -54,7 +60,9 @@
           </div>
         </div>
 
-        <input class="data" type="text" onfocus="(this.type='date')" value="Data de entrada" />
+        <div class="data-container">
+          <input class="data" type="text" onfocus="(this.type='date')" value="Data de entrada" />
+        </div>
         <div class="botoes">
           <button class="cancelar">CANCELAR</button>
           <button type="submit" class="salvar">SALVAR</button>

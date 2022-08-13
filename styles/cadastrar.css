@@ -79,7 +79,7 @@ main p {
 
 form {
   display: grid;
-  grid-template-columns: repeat(5, 17.5rem);
+  grid-template-columns: repeat(5, 15.75rem);
   grid-template-rows: repeat(4, 5.3rem);
   row-gap: 2.4rem;
   column-gap: 3.5rem;
@@ -118,34 +118,45 @@ label img {
   border-radius: 0.2rem;
 }
 
-input,
-textarea,
-.generosButton {
+.generosButton,
+fieldset,
+.titulo-container,
+.autor-container,
+.sinopse-container,
+.data-container {
   border: solid 0.1px #133052;
   border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+input,
+textarea,
+span {
+  border: none;
   font-size: 1.6rem;
   font-weight: 400;
-  padding: 1.6rem;
-  width: 35rem;
-  height: 5.3rem;
+  width: 100%;
+  height: 100%;
 }
 
-textarea {
-  padding-top: 1.6rem;
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
-.titulo {
+
+.titulo-container {
   grid-column-start: 2;
   grid-column-end: 4;
   width: 100%;
 }
 
-.autor {
+.autor-container {
   grid-column-start: 4;
   grid-column-end: 6;
 }
 
-.sinopse {
+.sinopse-container {
   grid-row-start: 2;
   grid-row-end: 4;
   grid-column-start: 2;
@@ -154,14 +165,18 @@ textarea {
   height: 100%;
 }
 
-.genero {
+.genero-container {
   grid-column-start: 4;
   grid-column-end: 6;
 }
 
-.data {
+.data-container {
   grid-column-start: 4;
   grid-column-end: 6;
+  width: 100%;
+}
+
+.data {
   background: url(../images/cadastrarCalendario.svg) no-repeat scroll 96%;
 }
 
@@ -201,13 +216,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .generos {
-  width: 35rem;
+  width: 100%;
   height: fit-content;
   display: flex;
   justify-content: center;
   flex-direction: column;
   grid-column-start: 4;
   grid-column-end: 6;
+}
+
+span {
+  width: fit-content;
+  height: fit-content;
 }
 
 .generosButton {
@@ -283,12 +303,25 @@ legend {
     margin-bottom: 3rem;
   }
 
-  .sinopse {
+
+  .titulo-container {
+    width: 35rem;
+  }
+
+  .autor-container {
+    width: 35rem;
+  }
+
+  .sinopse-container {
     width: 35rem;
     height: 5.3rem;
   }
 
-  .titulo {
+  .generos {
+    width: 35rem;
+  }
+
+  .data-container {
     width: 35rem;
   }
 }
@@ -299,7 +332,7 @@ legend {
   input,
   textarea,
   .generos {
-    width: 90%;
+    width: 100%;
   }
 
   .botoes {
@@ -309,7 +342,7 @@ legend {
   }
 
   .botoes button {
-    width: 80%;
+    width: 100%;
   }
 
   header {
@@ -322,11 +355,24 @@ legend {
     justify-content: center;
   }
 
-  .sinopse {
-    width: 90%;
+  .titulo-container {
+    width: 100%;
   }
 
-  .titulo {
-    width: 90%;
+  .autor-container {
+    width: 100%;
+  }
+
+  .sinopse-container {
+    width: 100%;
+    height: 5.3rem;
+  }
+
+  .generos {
+    width: 100%;
+  }
+
+  .data-container {
+    width: 100%;
   }
 }
