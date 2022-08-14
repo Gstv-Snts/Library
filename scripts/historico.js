@@ -25,12 +25,10 @@ const historicos = []
 livros.forEach((d) => {
     d.rentHistory.forEach((e) => {
         historicos.push({ name: e.studentName, class: e.class, tittle: d.tittle, withdrawl: e.withdrawalDate, delivery: e.deliveryDate })
-        console.log(historicos)
     })
 })
 
 function limparTable() {
-    console.log(document.querySelector('#aluno').childNodes)
     for (let i = 0; document.querySelector('#aluno').childNodes.length > 4; i++) {
         document.querySelector('#aluno').removeChild(document.querySelector('#aluno').childNodes[4])
     }
@@ -52,7 +50,6 @@ function preencherTable() {
 
 
     historicos.forEach((e) => {
-        console.log(e)
         document.getElementById('aluno').insertAdjacentHTML('beforeend', `<td>${e.name}</td>`)
         document.getElementById('turma').insertAdjacentHTML('beforeend', `<td>${e.class}</td>`)
         document.getElementById('livro').insertAdjacentHTML('beforeend', `<td>${e.tittle}</td>`)
